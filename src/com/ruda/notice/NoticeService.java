@@ -3,6 +3,7 @@ package com.ruda.notice;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -37,6 +38,49 @@ public class NoticeService {
 		}
 		return actionFoward;
 		
+	}
+	
+	public ActionFoward write(HttpServletRequest request, HttpServletResponse response) {
+		ActionFoward actionFoward = new ActionFoward();
+	
+			String method = request.getMethod();
+			
+			
+			if(method.equals("POST")) {
+				try {
+					Connection con = DBConnector.getConnection();
+					NoticeDTO noticeDTO = new NoticeDTO();
+					noticeDTO.setTitle(request.getParameter("title"));
+					noticeDTO.setWriter(request.getParameter("writer"));
+					noticeDTO.setContents(request.getParameter("contents"));
+					
+					
+					int result = noticeDAO.noticeWrite(con, noticeDTO);
+							con.close();
+							String message = null;
+							String path = null;
+					if(result>0) {
+						message = "Write Success";
+					}else {
+						message= "Write Fail";
+					}
+					actionFoward.setFlag(true);
+					path = "./noticeList.notice";
+					request.setAttribute("msg", message);
+					request.setAttribute("path", path);
+					actionFoward.setPath("../common/common_result.jsp");
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+			}else {
+				actionFoward.setFlag(true);
+				actionFoward.setPath("./noticeWrite.jsp");
+			}
+		
+	
+		
+		
+		return actionFoward;
 	}
 	
 	public ActionFoward selectOne(HttpServletRequest request, HttpServletResponse response) {

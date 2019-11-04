@@ -46,7 +46,7 @@
 		
 		
 		</table>
-
+		<a class="btn btn-primary" href="./noticeWrite.notice">Write</a>
 	</div>
 
 </body>

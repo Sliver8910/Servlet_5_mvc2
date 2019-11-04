@@ -44,6 +44,8 @@ public class NoticeController extends HttpServlet {
 			actionFoward = noticeService.selectList(request, response);
 		}else if(url.equals("noticeSelect")) {
 			actionFoward = noticeService.selectOne(request, response);
+		}else if(url.equals("noticeWrite")) {
+			actionFoward = noticeService.write(request, response);
 		}
 		if(actionFoward.isFlag()) { //boolean 타입을 가져올때는 get이 아닌 isFlag
 			RequestDispatcher view = request.getRequestDispatcher(actionFoward.getPath());

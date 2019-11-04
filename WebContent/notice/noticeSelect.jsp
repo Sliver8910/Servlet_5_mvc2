@@ -42,7 +42,7 @@ NoticeDTO noticeDTO = (NoticeDTO)request.getAttribute("dto");
 			</tbody>
 		</table>
 		
-		<a href="./noticeList.jsp" class="btn btn-primary">글목록</a>
+		<a href="./noticeList.notice" class="btn btn-primary">글목록</a>
 	</div>
 
 </body>

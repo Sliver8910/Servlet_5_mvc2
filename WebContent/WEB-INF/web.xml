@@ -5,7 +5,7 @@
                       http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	version="3.1">
 	<display-name>Servlet_5_mvc2</display-name>
-
+<!-- 컨트롤러를 거처가기 위한 .notice  -->
 	<servlet>
 		<servlet-name>notice</servlet-name>
 		<servlet-class>com.ruda.controller.NoticeController</servlet-class>
@@ -13,7 +13,7 @@
 
 	<servlet-mapping>
 		<servlet-name>notice</servlet-name> <!-- notice로 시작하는 모든 것들을 매핑 -->
-		<url-pattern>*.notice</url-pattern>
+		<url-pattern>*.notice</url-pattern> 
 
 	</servlet-mapping>
 </web-app>
