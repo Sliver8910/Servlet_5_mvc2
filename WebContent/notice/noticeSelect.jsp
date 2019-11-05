@@ -4,9 +4,7 @@
 <%@page import="com.ruda.notice.NoticeDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-NoticeDTO noticeDTO = (NoticeDTO)request.getAttribute("dto");
-%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,14 +32,14 @@ NoticeDTO noticeDTO = (NoticeDTO)request.getAttribute("dto");
 			</thead> 
 			<tbody> 
 				<tr>
-					<td id="title1"><%=noticeDTO.getTitle() %></td><td class="th1"><%=noticeDTO.getWriter() %></td><td class="th1 date"><%=noticeDTO.getReg_date() %></td><td class="th1 hit"><%=noticeDTO.getHit() %></td>
+					<td id="title1">${requestScope.dto.contents}</td><td class="th1">${requestScope.dto.writer}</td><td class="th1 date">${requestScope.dto.reg_date}</td><td class="th1 hit">${requestScope.dto.hit}</td>
 				</tr>
 				<tr>
-					<td colspan="4"><div class="con1"><%=noticeDTO.getContents() %></div></td>
+					<td colspan="4"><div class="con1">${requestScope.dto.contents}</div></td>
 				</tr>
 			</tbody>
 		</table>
-		
+		<a class="btn btn-primary" href="./noticeUpdate.notice?num=${requestScope.dto.num}">Update</a>
 		<a href="./noticeList.notice" class="btn btn-primary">글목록</a>
 	</div>
 

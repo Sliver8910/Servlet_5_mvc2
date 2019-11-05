@@ -4,17 +4,7 @@
 <%@page import="com.ruda.notice.NoticeDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	request.setCharacterEncoding("UTF-8");
-	response.setCharacterEncoding("UTF-8");
-	
-	int num = Integer.parseInt(request.getParameter("num"));
-	NoticeDAO noticeDAO = new NoticeDAO();
-	Connection con = DBConnector.getConnection();
-	NoticeDTO noticeDTO = noticeDAO.noticeSelect(con, num);
-	
-	con.close();
-%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,24 +24,24 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-<%@ include file="../layout/nav.jsp" %>
+
 	<div class="container">
 		<h2>Notice Update Page</h2>
-		<form action="./noticeUpdateResult.jsp" method="post">
-		<input type="text" name = "num" value="<%=noticeDTO.getNum()%>" hidden="" readonly="readonly">
+		<form action="./noticeUpdate.notice" method="post">
+		<input type="text" name = "num" value="${requestScope.dto.num}" hidden="" readonly="readonly">
 			<div class="form-group">
 				<label for="title">Title : </label> <input type="text"
-					class="form-control" id="title" value="<%=noticeDTO.getTitle()%>" name="title">
+					class="form-control" id="title" value="${requestScope.dto.title}" name="title">
 			</div>
 			<div class="form-group">
 				<label for="writer">Writer : </label> <input type="text"
-					class="form-control" id="writer" readonly="readonly" value="<%=noticeDTO.getWriter() %>" name="writer">
+					class="form-control" id="writer" readonly="readonly" value="${requestScope.dto.writer}" name="writer">
 			</div>
 			<div class="form-group">
 				<label for="contents">Contents:</label>
 				
 				<textarea class="form-control" rows="30" id="contents"
-					name="contents"  ><%=noticeDTO.getContents() %></textarea>
+					name="contents"  >${requestScope.dto.contents}></textarea>
 			</div>
 
 
